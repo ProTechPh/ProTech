@@ -1,32 +1,79 @@
 .about {
-  background: var(--bg-secondary);
+  background: var(--bg-primary);
+  padding: 100px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.about::before {
+  content: '';
+  position: absolute;
+  top: 20%;
+  left: -10%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(168, 218, 220, 0.1), transparent 70%);
+  border-radius: 50%;
+  filter: blur(50px);
+  animation: float 35s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  50% {
+    transform: translate(100px, 100px) rotate(180deg);
+  }
 }
 
 .container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 20px;
+  position: relative;
+  z-index: 1;
 }
 
 .sectionHeader {
   text-align: center;
-  margin-bottom: 60px;
+  margin-bottom: 70px;
 }
 
 .sectionTitle {
-  font-size: 2.5rem;
-  font-weight: 800;
+  font-size: 3rem;
+  font-weight: 900;
   margin-bottom: 1rem;
-  color: var(--text-primary);
+  background: var(--gradient-accent);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -0.02em;
+  position: relative;
+  display: inline-block;
+}
+
+.sectionTitle::after {
+  content: '';
+  position: absolute;
+  bottom: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background: var(--gradient-primary);
+  border-radius: 2px;
 }
 
 .sectionSubtitle {
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   color: var(--text-secondary);
+  margin-top: 1.5rem;
+  font-weight: 400;
 }
 
 .aboutContent {
-  max-width: 900px;
+  max-width: 1000px;
   margin: 0 auto;
 }
 
@@ -45,67 +92,119 @@
 }
 
 .aboutDescription {
-  font-size: 1.1rem;
-  line-height: 1.8;
+  font-size: 1.15rem;
+  line-height: 1.9;
   color: var(--text-secondary);
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.8rem;
+  padding: 2rem;
+  background: var(--bg-secondary);
+  border-radius: 20px;
+  border-left: 4px solid var(--primary-color);
+  box-shadow: var(--shadow-sm);
 }
 
 .stats {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 2rem;
-  margin-top: 3rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2.5rem;
+  margin-top: 4rem;
 }
 
 .statItem {
   text-align: center;
-  padding: 2rem;
-  background: white;
-  border-radius: 12px;
+  padding: 3rem 2rem;
+  background: var(--bg-primary);
+  border-radius: 24px;
   box-shadow: var(--shadow-md);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   opacity: 0;
   transform: translateY(30px);
   animation: fadeInUp 0.6s ease forwards;
+  position: relative;
+  overflow: hidden;
+  border: 2px solid var(--border-color);
+}
+
+.statItem::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: var(--gradient-primary);
+  transform: scaleX(0);
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-origin: left;
+}
+
+.statItem:hover::before {
+  transform: scaleX(1);
 }
 
 .statItem:nth-child(1) {
-  animation-delay: 0.1s;
-}
-
-.statItem:nth-child(2) {
   animation-delay: 0.2s;
 }
 
+.statItem:nth-child(2) {
+  animation-delay: 0.4s;
+}
+
 .statItem:nth-child(3) {
-  animation-delay: 0.3s;
+  animation-delay: 0.6s;
 }
 
 .statItem:hover {
-  transform: translateY(-5px);
-  box-shadow: var(--shadow-xl);
+  transform: translateY(-10px) scale(1.05);
+  box-shadow: var(--shadow-colored);
+  border-color: var(--primary-color);
 }
 
 .statNumber {
-  font-size: 3rem;
-  font-weight: 800;
-  color: var(--primary-color);
-  margin-bottom: 0.5rem;
+  font-size: 3.5rem;
+  font-weight: 900;
+  background: var(--gradient-secondary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 0.8rem;
+  display: block;
+  line-height: 1;
 }
 
 .statLabel {
-  font-size: 1rem;
+  font-size: 1.05rem;
   color: var(--text-secondary);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 @media (max-width: 768px) {
+  .about {
+    padding: 60px 0;
+  }
+
+  .about::before {
+    width: 350px;
+    height: 350px;
+  }
+
   .sectionTitle {
-    font-size: 2rem;
+    font-size: 2.2rem;
+  }
+
+  .aboutDescription {
+    font-size: 1rem;
+    padding: 1.5rem;
   }
 
   .stats {
     grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .statNumber {
+    font-size: 2.8rem;
   }
 }
-

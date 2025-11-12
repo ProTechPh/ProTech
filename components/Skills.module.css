@@ -1,70 +1,163 @@
 .skills {
   padding: 100px 0;
   background: var(--bg-secondary);
+  position: relative;
+  overflow: hidden;
+}
+
+.skills::before {
+  content: '';
+  position: absolute;
+  top: -30%;
+  right: -10%;
+  width: 550px;
+  height: 550px;
+  background: radial-gradient(circle, rgba(247, 127, 0, 0.08), transparent 70%);
+  border-radius: 50%;
+  filter: blur(50px);
+  animation: float 28s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(-80px, 80px) scale(1.15);
+  }
 }
 
 .container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 20px;
+  position: relative;
+  z-index: 1;
 }
 
 .sectionHeader {
   text-align: center;
-  margin-bottom: 4rem;
+  margin-bottom: 70px;
 }
 
 .sectionTitle {
-  font-size: 2.5rem;
-  font-weight: 800;
+  font-size: 3rem;
+  font-weight: 900;
   color: var(--text-primary);
   margin-bottom: 1rem;
-  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  background: var(--gradient-primary);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  letter-spacing: -0.02em;
+  position: relative;
+  display: inline-block;
+}
+
+.sectionTitle::after {
+  content: '';
+  position: absolute;
+  bottom: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background: var(--gradient-secondary);
+  border-radius: 2px;
 }
 
 .sectionSubtitle {
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   color: var(--text-secondary);
-  max-width: 600px;
-  margin: 0 auto;
+  max-width: 700px;
+  margin: 1.5rem auto 0;
+  font-weight: 400;
 }
 
 .skillsGrid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 2rem;
+  gap: 2.5rem;
 }
 
 .categoryCard {
   background: var(--bg-primary);
-  padding: 2rem;
-  border-radius: 16px;
+  padding: 2.5rem;
+  border-radius: 24px;
   box-shadow: var(--shadow-md);
-  border: 1px solid var(--border-color);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 2px solid var(--border-color);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.categoryCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 6px;
+  background: var(--gradient-primary);
+  transform: scaleX(0);
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-origin: left;
+}
+
+.categoryCard:nth-child(2)::before {
+  background: var(--gradient-secondary);
+}
+
+.categoryCard:nth-child(3)::before {
+  background: var(--gradient-accent);
 }
 
 .categoryCard:hover {
-  transform: translateY(-5px);
-  box-shadow: var(--shadow-lg);
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: var(--shadow-colored);
+  border-color: var(--primary-color);
+}
+
+.categoryCard:hover::before {
+  transform: scaleX(1);
 }
 
 .categoryTitle {
-  font-size: 1.5rem;
-  font-weight: 700;
+  font-size: 1.7rem;
+  font-weight: 800;
   color: var(--text-primary);
-  margin-bottom: 1.5rem;
-  padding-bottom: 0.75rem;
-  border-bottom: 2px solid var(--primary-color);
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid var(--border-color);
+  letter-spacing: -0.01em;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.categoryTitle::before {
+  content: '';
+  width: 12px;
+  height: 12px;
+  background: var(--gradient-primary);
+  border-radius: 50%;
+  box-shadow: 0 0 15px rgba(255, 107, 107, 0.5);
+}
+
+.categoryCard:nth-child(2) .categoryTitle::before {
+  background: var(--gradient-secondary);
+  box-shadow: 0 0 15px rgba(78, 205, 196, 0.5);
+}
+
+.categoryCard:nth-child(3) .categoryTitle::before {
+  background: var(--gradient-accent);
+  box-shadow: 0 0 15px rgba(102, 126, 234, 0.5);
 }
 
 .skillsList {
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
+  gap: 1.5rem;
 }
 
 .skillItem {
@@ -75,37 +168,54 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.7rem;
 }
 
 .skillName {
-  font-weight: 600;
+  font-weight: 700;
   color: var(--text-primary);
-  font-size: 0.95rem;
+  font-size: 1rem;
+  letter-spacing: -0.01em;
 }
 
 .skillLevel {
-  font-weight: 600;
+  font-weight: 700;
   color: var(--primary-color);
-  font-size: 0.9rem;
+  font-size: 0.95rem;
+  padding: 0.25rem 0.8rem;
+  background: var(--bg-secondary);
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
 }
 
 .progressContainer {
   width: 100%;
-  height: 8px;
+  height: 10px;
   background: var(--bg-secondary);
-  border-radius: 4px;
+  border-radius: 12px;
   overflow: hidden;
   position: relative;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.06);
 }
 
 .progressBar {
   height: 100%;
-  background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
-  border-radius: 4px;
-  transition: width 1.5s ease-out;
+  background: var(--gradient-primary);
+  border-radius: 12px;
+  transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
+  box-shadow: 0 2px 8px rgba(255, 107, 107, 0.3);
+}
+
+.categoryCard:nth-child(2) .progressBar {
+  background: var(--gradient-secondary);
+  box-shadow: 0 2px 8px rgba(78, 205, 196, 0.3);
+}
+
+.categoryCard:nth-child(3) .progressBar {
+  background: var(--gradient-accent);
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
 }
 
 .progressBar::after {
@@ -118,7 +228,7 @@
   background: linear-gradient(
     90deg,
     transparent,
-    rgba(255, 255, 255, 0.3),
+    rgba(255, 255, 255, 0.4),
     transparent
   );
   animation: shimmer 2s infinite;
@@ -138,17 +248,29 @@
     padding: 60px 0;
   }
 
+  .skills::before {
+    width: 400px;
+    height: 400px;
+  }
+
   .sectionTitle {
-    font-size: 2rem;
+    font-size: 2.2rem;
+  }
+
+  .sectionSubtitle {
+    font-size: 1rem;
   }
 
   .skillsGrid {
     grid-template-columns: 1fr;
-    gap: 1.5rem;
+    gap: 2rem;
   }
 
   .categoryCard {
-    padding: 1.5rem;
+    padding: 2rem;
+  }
+
+  .categoryTitle {
+    font-size: 1.5rem;
   }
 }
-

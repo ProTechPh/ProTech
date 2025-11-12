@@ -3,19 +3,27 @@
   top: 0;
   left: 0;
   right: 0;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
-  box-shadow: var(--shadow-sm);
+  background: rgba(253, 252, 255, 0.8);
+  backdrop-filter: blur(20px) saturate(180%);
+  box-shadow: 0 4px 20px rgba(255, 107, 107, 0.08);
   z-index: 1000;
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border-bottom: 2px solid transparent;
 }
 
 :root.dark .navbar {
-  background: rgba(17, 24, 39, 0.95);
+  background: rgba(22, 33, 62, 0.8);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
 
 .navbar.scrolled {
-  box-shadow: var(--shadow-md);
+  box-shadow: 0 8px 32px rgba(255, 107, 107, 0.15);
+  border-bottom: 2px solid rgba(255, 107, 107, 0.2);
+}
+
+:root.dark .navbar.scrolled {
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  border-bottom: 2px solid rgba(255, 135, 135, 0.3);
 }
 
 .container {
@@ -28,21 +36,39 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 0;
+  padding: 1.2rem 0;
 }
 
 .navActions {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 1.5rem;
 }
 
 .logo {
-  font-size: 1.75rem;
-  font-weight: 800;
+  font-size: 2rem;
+  font-weight: 900;
   color: var(--text-primary);
   text-decoration: none;
-  transition: transform 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  letter-spacing: -0.02em;
+}
+
+.logo::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 3px;
+  background: var(--gradient-primary);
+  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 2px;
+}
+
+.logo:hover::after {
+  width: 100%;
 }
 
 .logo:hover {
@@ -50,119 +76,206 @@
 }
 
 .logo span {
-  color: var(--primary-color);
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .navMenu {
   display: flex;
   list-style: none;
-  gap: 2rem;
+  gap: 2.5rem;
+  position: relative;
 }
 
 .navLink {
   text-decoration: none;
   color: var(--text-secondary);
-  font-weight: 500;
-  font-size: 0.95rem;
+  font-weight: 600;
+  font-size: 1rem;
   position: relative;
-  transition: color 0.3s ease;
+  transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
+  padding: 0.5rem 0;
+}
+
+.navLink::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 3px;
+  background: var(--gradient-primary);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateX(-50%);
+  border-radius: 2px;
 }
 
 .navLink::after {
   content: '';
   position: absolute;
-  bottom: -5px;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background: var(--primary-color);
-  transition: width 0.3s ease;
+  top: -8px;
+  left: 50%;
+  width: 6px;
+  height: 6px;
+  background: var(--secondary-color);
+  border-radius: 50%;
+  opacity: 0;
+  transform: translateX(-50%) translateY(10px);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .navLink:hover {
   color: var(--primary-color);
+  transform: translateY(-2px);
+}
+
+.navLink:hover::before {
+  width: 100%;
 }
 
 .navLink:hover::after {
-  width: 100%;
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
 }
 
 .themeToggle {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
+  width: 48px;
+  height: 48px;
   background: var(--bg-secondary);
-  border: 1px solid var(--border-color);
-  border-radius: 8px;
+  border: 2px solid var(--border-color);
+  border-radius: 50%;
   cursor: pointer;
   color: var(--text-primary);
-  transition: all 0.3s ease;
-  padding: 8px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 10px;
+  position: relative;
+  overflow: hidden;
+}
+
+.themeToggle::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: var(--gradient-primary);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: -1;
+}
+
+.themeToggle:hover::before {
+  width: 150%;
+  height: 150%;
 }
 
 .themeToggle:hover {
-  background: var(--primary-color);
   color: white;
-  border-color: var(--primary-color);
-  transform: scale(1.05);
+  border-color: transparent;
+  transform: scale(1.1) rotate(15deg);
+  box-shadow: var(--shadow-colored);
 }
 
 .themeToggle svg {
-  width: 20px;
-  height: 20px;
+  width: 22px;
+  height: 22px;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.themeToggle:hover svg {
+  transform: rotate(180deg);
 }
 
 .mobileMenuToggle {
   display: none;
   flex-direction: column;
-  gap: 5px;
+  gap: 6px;
   background: none;
   border: none;
   cursor: pointer;
+  padding: 8px;
+  border-radius: 8px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.mobileMenuToggle:hover {
+  background: var(--bg-secondary);
 }
 
 .mobileMenuToggle span {
-  width: 25px;
+  width: 28px;
   height: 3px;
   background: var(--text-primary);
   border-radius: 3px;
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.mobileMenuToggle.active span:nth-child(1) {
+  transform: translateY(9px) rotate(45deg);
+}
+
+.mobileMenuToggle.active span:nth-child(2) {
+  opacity: 0;
+  transform: translateX(-20px);
+}
+
+.mobileMenuToggle.active span:nth-child(3) {
+  transform: translateY(-9px) rotate(-45deg);
 }
 
 @media (max-width: 768px) {
   .navMenu {
     position: fixed;
-    top: 70px;
+    top: 80px;
     left: -100%;
     width: 100%;
     flex-direction: column;
     background: var(--bg-primary);
-    padding: 2rem;
-    box-shadow: var(--shadow-lg);
-    transition: left 0.3s ease;
-    gap: 1rem;
+    padding: 2.5rem;
+    box-shadow: 0 10px 40px rgba(255, 107, 107, 0.15);
+    transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    gap: 1.5rem;
+    border-radius: 0 0 24px 24px;
+    backdrop-filter: blur(20px);
+  }
+
+  :root.dark .navMenu {
+    background: rgba(22, 33, 62, 0.95);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
   }
 
   .navMenu.active {
     left: 0;
   }
 
+  .navLink::after {
+    display: none;
+  }
+
+  .navLink:hover {
+    transform: translateX(8px);
+  }
+
   .themeToggle {
-    width: 36px;
-    height: 36px;
-    padding: 6px;
+    width: 44px;
+    height: 44px;
+    padding: 8px;
   }
 
   .themeToggle svg {
-    width: 18px;
-    height: 18px;
+    width: 20px;
+    height: 20px;
   }
 
   .mobileMenuToggle {
     display: flex;
   }
 }
-
