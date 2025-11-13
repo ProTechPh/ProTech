@@ -34,42 +34,11 @@
   z-index: 1;
 }
 
-.sectionHeader {
-  text-align: center;
-  margin-bottom: 70px;
-}
+/* Remove conflicting sectionHeader styles - let SectionHeader.module.css handle it */
 
-.sectionTitle {
-  font-size: 3rem;
-  font-weight: 900;
-  margin-bottom: 1rem;
-  background: var(--gradient-primary);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  letter-spacing: -0.02em;
-  position: relative;
-  display: inline-block;
-}
+/* Remove conflicting sectionTitle styles - let SectionHeader.module.css handle it */
 
-.sectionTitle::after {
-  content: '';
-  position: absolute;
-  bottom: -12px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 80px;
-  height: 4px;
-  background: var(--gradient-secondary);
-  border-radius: 2px;
-}
-
-.sectionSubtitle {
-  font-size: 1.2rem;
-  color: var(--text-secondary);
-  margin-top: 1.5rem;
-  font-weight: 400;
-}
+/* Remove conflicting sectionSubtitle styles - let SectionHeader.module.css handle it */
 
 .servicesGrid {
   display: grid;

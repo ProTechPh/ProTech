@@ -1,6 +1,6 @@
 .footer {
-  background: var(--bg-dark);
-  color: white;
+  background: var(--bg-secondary);
+  color: var(--text-primary);
   padding: 80px 0 30px;
   position: relative;
   overflow: hidden;
@@ -68,7 +68,7 @@
 }
 
 .footerBrand .logo {
-  color: white;
+  color: var(--text-primary);
   font-size: 2.5rem;
   margin-bottom: 1.5rem;
   display: inline-block;
@@ -89,7 +89,7 @@
 }
 
 .footerBrand p {
-  color: var(--text-light);
+  color: var(--text-secondary);
   line-height: 1.8;
   font-size: 1rem;
   margin-bottom: 2rem;
@@ -105,12 +105,12 @@
   width: 48px;
   height: 48px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.1);
-  border: 2px solid rgba(255, 255, 255, 0.2);
+  background: var(--glass-bg);
+  border: 2px solid var(--border-color);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: white;
+  color: var(--text-primary);
   text-decoration: none;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
@@ -157,7 +157,7 @@
 .footerColumn h4 {
   font-size: 1.3rem;
   margin-bottom: 1.5rem;
-  color: white;
+  color: var(--text-primary);
   font-weight: 800;
   letter-spacing: -0.01em;
   position: relative;
@@ -183,8 +183,14 @@
   margin-bottom: 1rem;
 }
 
+.footerColumn span {
+  color: var(--text-secondary);
+  font-size: 1rem;
+  font-weight: 500;
+}
+
 .footerColumn a {
-  color: var(--text-light);
+  color: var(--text-secondary);
   text-decoration: none;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
@@ -210,15 +216,15 @@
 }
 
 .footerColumn a:hover {
-  color: white;
+  color: var(--text-primary);
   transform: translateX(5px);
 }
 
 .footerBottom {
   padding-top: 2.5rem;
-  border-top: 2px solid rgba(255, 255, 255, 0.1);
+  border-top: 2px solid var(--border-color);
   text-align: center;
-  color: var(--text-light);
+  color: var(--text-secondary);
   position: relative;
 }
 

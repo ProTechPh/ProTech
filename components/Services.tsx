@@ -145,11 +145,11 @@ export default function Services() {
   return (
     <section id="services" className={styles.services}>
       <div className={styles.container}>
-        <div className={`${headerStyles.sectionHeader} ${styles.sectionHeader}`}>
+        <div className={headerStyles.sectionHeader}>
           <span className={headerStyles.sectionBadge}>What We Do</span>
-          <h2 className={`${headerStyles.sectionTitle} ${styles.sectionTitle}`}>Our Services</h2>
+          <h2 className={headerStyles.sectionTitle}>Our Services</h2>
           <div className={headerStyles.sectionDivider}></div>
-          <p className={`${headerStyles.sectionSubtitle} ${styles.sectionSubtitle}`}>
+          <p className={headerStyles.sectionSubtitle}>
             Comprehensive solutions for your digital needs. We deliver cutting-edge technology 
             services that drive innovation and accelerate your business growth.
           </p>
