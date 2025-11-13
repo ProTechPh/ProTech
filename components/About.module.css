@@ -105,9 +105,9 @@
 
 .stats {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 2.5rem;
-  margin-top: 4rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr));
+  gap: clamp(1.5rem, 4vw, 2.5rem);
+  margin-top: clamp(2.5rem, 6vw, 4rem);
 }
 
 .statItem {
@@ -180,31 +180,97 @@
   letter-spacing: 0.05em;
 }
 
+/* Tablet optimizations */
+@media (max-width: 1024px) {
+  .sectionHeader {
+    margin-bottom: clamp(50px, 8vw, 70px);
+  }
+  
+  .aboutDescription {
+    font-size: clamp(1.05rem, 3vw, 1.15rem);
+    padding: clamp(1.5rem, 4vw, 2rem);
+  }
+  
+  .stats {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+  
+  .statItem {
+    padding: clamp(2rem, 5vw, 2.5rem) clamp(1.5rem, 4vw, 2rem);
+  }
+}
+
 @media (max-width: 768px) {
-  .about {
-    padding: 60px 0;
-  }
-
-  .about::before {
-    width: 350px;
-    height: 350px;
-  }
-
   .sectionTitle {
-    font-size: 2.2rem;
+    font-size: clamp(1.8rem, 5vw, 2.5rem);
+  }
+  
+  .sectionSubtitle {
+    font-size: clamp(1rem, 3vw, 1.15rem);
   }
 
   .aboutDescription {
-    font-size: 1rem;
-    padding: 1.5rem;
+    font-size: clamp(1rem, 3vw, 1.1rem);
+    padding: clamp(1.5rem, 4vw, 2rem);
+    border-radius: 16px;
+    margin-bottom: 1.5rem;
   }
 
   .stats {
     grid-template-columns: 1fr;
-    gap: 1.5rem;
+    gap: clamp(1.2rem, 3vw, 1.8rem);
+    margin-top: clamp(2rem, 5vw, 3rem);
+  }
+  
+  .statItem {
+    padding: clamp(2rem, 5vw, 2.5rem) clamp(1.5rem, 4vw, 2rem);
+    border-radius: 20px;
+  }
+  
+  .statItem:hover {
+    transform: translateY(-5px) scale(1.02);
   }
 
   .statNumber {
-    font-size: 2.8rem;
+    font-size: clamp(2.5rem, 7vw, 3.2rem);
+    margin-bottom: 0.6rem;
+  }
+  
+  .statLabel {
+    font-size: clamp(0.9rem, 3vw, 1rem);
+  }
+}
+
+/* Small mobile optimizations */
+@media (max-width: 480px) {
+  .aboutDescription {
+    padding: 1.5rem;
+    font-size: 1rem;
+  }
+  
+  .statItem {
+    padding: 2rem 1.5rem;
+  }
+  
+  .statNumber {
+    font-size: 2.5rem;
+  }
+  
+  .statLabel {
+    font-size: 0.9rem;
+  }
+}
+
+/* Touch improvements */
+@media (hover: none) and (pointer: coarse) {
+  .statItem {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+  
+  .statItem:active {
+    transform: scale(0.98);
   }
 }

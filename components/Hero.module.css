@@ -416,65 +416,176 @@
   }
 }
 
-@media (max-width: 768px) {
+/* Tablet and medium screens */
+@media (max-width: 1024px) {
+  .hero {
+    padding: 100px 0 60px;
+  }
+  
+  .heroContent {
+    padding: clamp(2rem, 5vw, 3rem);
+    max-width: 800px;
+  }
+  
   .heroMain {
-    font-size: 3.5rem;
+    font-size: clamp(3.5rem, 8vw, 5rem);
   }
 
   .heroAccent {
-    font-size: 3rem;
+    font-size: clamp(3rem, 7vw, 4.2rem);
+  }
+  
+  .heroDescription {
+    font-size: clamp(1.15rem, 3vw, 1.25rem);
+    margin: 2rem auto;
+  }
+  
+  .floatingShape1,
+  .floatingShape2,
+  .floatingShape3 {
+    width: clamp(300px, 40vw, 400px);
+    height: clamp(300px, 40vw, 400px);
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    min-height: 90vh;
+    padding: 100px 0 40px;
+  }
+  
+  .heroContent {
+    padding: clamp(1.5rem, 4vw, 2.5rem);
+  }
+  
+  .heroMain {
+    font-size: clamp(2.8rem, 7vw, 3.8rem);
+    line-height: 1.1;
+  }
+
+  .heroAccent {
+    font-size: clamp(2.4rem, 6vw, 3.2rem);
+    margin-top: -0.3rem;
   }
 
   .heroSubtitle {
-    font-size: 1.2rem;
+    font-size: clamp(1.1rem, 3vw, 1.3rem);
+    margin-bottom: 0.6rem;
   }
 
   .heroDescription {
-    font-size: 1.1rem;
+    font-size: clamp(1rem, 3vw, 1.15rem);
+    margin: 1.8rem auto;
+    max-width: 600px;
+  }
+  
+  .heroButtons {
+    gap: clamp(1rem, 3vw, 1.5rem);
+  }
+  
+  .btnPrimary,
+  .btnSecondary {
+    padding: clamp(0.9rem, 3vw, 1.1rem) clamp(1.8rem, 5vw, 2.2rem);
+    font-size: clamp(0.95rem, 3vw, 1.05rem);
   }
 
   .floatingShape1,
   .floatingShape2,
   .floatingShape3 {
-    width: 250px;
-    height: 250px;
+    width: clamp(200px, 35vw, 280px);
+    height: clamp(200px, 35vw, 280px);
+    filter: blur(30px);
   }
 
   .gradientOrb1,
   .gradientOrb2 {
-    width: 300px;
-    height: 300px;
+    width: clamp(250px, 45vw, 350px);
+    height: clamp(250px, 45vw, 350px);
+  }
+  
+  .scrollIndicator {
+    bottom: 30px;
   }
 }
 
 @media (max-width: 480px) {
+  .hero {
+    min-height: 85vh;
+    padding: 90px 0 30px;
+  }
+  
+  .heroContent {
+    padding: 1.5rem;
+    border-radius: 20px;
+  }
+  
   .heroMain {
-    font-size: 2.5rem;
+    font-size: clamp(2.2rem, 8vw, 2.8rem);
   }
 
   .heroAccent {
-    font-size: 2.2rem;
+    font-size: clamp(2rem, 7vw, 2.4rem);
   }
 
   .heroSubtitle {
-    font-size: 1rem;
+    font-size: clamp(1rem, 4vw, 1.1rem);
+    margin-bottom: 0.5rem;
+  }
+  
+  .heroDescription {
+    font-size: clamp(0.95rem, 3.5vw, 1.05rem);
+    margin: 1.5rem auto;
+    line-height: 1.6;
   }
 
   .heroButtons {
     flex-direction: column;
     width: 100%;
     gap: 1rem;
+    margin-top: 1.5rem;
   }
 
   .btnPrimary,
   .btnSecondary {
     width: 100%;
     justify-content: center;
+    padding: 1rem 1.5rem;
+    font-size: 1rem;
+    border-radius: 12px;
   }
 
   .floatingShape1,
   .floatingShape2,
   .floatingShape3 {
     display: none;
+  }
+  
+  .gradientOrb1,
+  .gradientOrb2 {
+    width: 200px;
+    height: 200px;
+    filter: blur(50px);
+  }
+  
+  .scrollIndicator {
+    bottom: 20px;
+    transform: translateX(-50%) scale(0.9);
+  }
+}
+
+/* Touch improvements */
+@media (hover: none) and (pointer: coarse) {
+  .btnPrimary,
+  .btnSecondary {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+  
+  .btnPrimary:active {
+    transform: translateY(-1px) scale(0.98);
+  }
+  
+  .btnSecondary:active {
+    transform: translateY(-1px) scale(0.98);
   }
 }

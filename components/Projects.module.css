@@ -74,8 +74,8 @@
 
 .projectsGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 2.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr));
+  gap: clamp(1.5rem, 4vw, 2.5rem);
 }
 
 .projectCard {
@@ -304,28 +304,41 @@
   font-weight: 500;
 }
 
+/* Tablet optimizations */
+@media (max-width: 1024px) {
+  .projectsGrid,
+  .loadingGrid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+  }
+  
+  .projectContent {
+    padding: 2rem;
+  }
+  
+  .projectTitle {
+    font-size: clamp(1.4rem, 3vw, 1.6rem);
+  }
+}
+
 @media (max-width: 768px) {
-  .projects {
-    padding: 60px 0;
-  }
-
-  .projects::before {
-    width: 400px;
-    height: 400px;
-  }
-
   .sectionTitle {
-    font-size: 2.2rem;
+    font-size: clamp(1.8rem, 5vw, 2.5rem);
   }
 
   .sectionSubtitle {
-    font-size: 1rem;
+    font-size: clamp(1rem, 3vw, 1.15rem);
   }
 
   .projectsGrid,
   .loadingGrid {
     grid-template-columns: 1fr;
-    gap: 2rem;
+    gap: clamp(1.5rem, 4vw, 2rem);
+  }
+
+  .projectCard {
+    margin: 0;
+    border-radius: 20px;
   }
 
   .projectCard:nth-child(2n) {
@@ -333,6 +346,82 @@
   }
 
   .projectCard:nth-child(2n):hover {
-    transform: translateY(-15px) scale(1.02);
+    transform: translateY(-10px) scale(1.01);
+  }
+  
+  .projectCard:hover {
+    transform: translateY(-10px) scale(1.01);
+  }
+  
+  .projectContent {
+    padding: clamp(1.5rem, 4vw, 2rem);
+  }
+  
+  .projectTitle {
+    font-size: clamp(1.3rem, 4vw, 1.5rem);
+    margin-bottom: 1rem;
+  }
+  
+  .projectDescription {
+    font-size: clamp(0.9rem, 3vw, 1rem);
+    margin-bottom: 1.5rem;
+  }
+  
+  .projectTags {
+    gap: 0.6rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .tag {
+    padding: 0.4rem 1rem;
+    font-size: clamp(0.8rem, 2.5vw, 0.9rem);
+  }
+  
+  .projectLinks {
+    gap: 0.8rem;
+    flex-wrap: wrap;
+  }
+  
+  .projectLink {
+    padding: 0.7rem 1.5rem;
+    font-size: clamp(0.85rem, 3vw, 0.95rem);
+  }
+}
+
+/* Small mobile improvements */
+@media (max-width: 480px) {
+  .projectImage {
+    padding-bottom: 50%;
+  }
+  
+  .projectContent {
+    padding: 1.5rem;
+  }
+  
+  .projectLinks {
+    flex-direction: column;
+  }
+  
+  .projectLink {
+    width: 100%;
+    justify-content: center;
+    padding: 0.8rem;
+  }
+}
+
+/* Touch improvements */
+@media (hover: none) and (pointer: coarse) {
+  .projectCard {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+  
+  .projectCard:active {
+    transform: scale(0.98);
+  }
+  
+  .projectLink:active,
+  .tag:active {
+    transform: scale(0.95);
   }
 }
