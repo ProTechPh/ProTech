@@ -6,6 +6,7 @@ import Skills from '@/components/Skills'
 import Projects from '@/components/Projects'
 import Testimonials from '@/components/Testimonials'
 import Blog from '@/components/Blog'
+import SocialConnect from '@/components/SocialConnect'
 import Contact from '@/components/Contact'
 
 export const metadata: Metadata = {
@@ -27,6 +28,7 @@ export default function Home() {
       <Skills />
       <Projects />
       <Testimonials />
+      <SocialConnect />
       <Blog />
       <Contact />
     </main>

@@ -2,6 +2,8 @@
 
 import { useEffect, useRef } from 'react'
 import styles from './Services.module.css'
+import cardStyles from './AnimatedCard.module.css'
+import headerStyles from './SectionHeader.module.css'
 
 interface Service {
   title: string
@@ -113,7 +115,7 @@ function ServiceCard({ service, index }: { service: Service; index: number }) {
   return (
     <div
       ref={cardRef}
-      className={styles.serviceCard}
+      className={`${cardStyles.card} ${cardStyles.cardGlass} ${styles.serviceCard}`}
       style={{
         opacity: 0,
         transform: 'translateY(30px)',
@@ -121,9 +123,20 @@ function ServiceCard({ service, index }: { service: Service; index: number }) {
         transitionDelay: `${index * 0.1}s`,
       }}
     >
-      <div className={styles.serviceIcon}>{service.icon}</div>
-      <h3 className={styles.serviceTitle}>{service.title}</h3>
-      <p className={styles.serviceDescription}>{service.description}</p>
+      <div className={cardStyles.cardContent}>
+        <div className={`${cardStyles.cardIcon} ${styles.serviceIcon}`}>
+          {service.icon}
+        </div>
+        <h3 className={`${cardStyles.cardTitle} ${styles.serviceTitle}`}>{service.title}</h3>
+        <p className={`${cardStyles.cardDescription} ${styles.serviceDescription}`}>{service.description}</p>
+        <button className={`${cardStyles.cardButton} ${styles.learnMore}`}>
+          Learn More
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <path d="M5 12h14"/>
+            <path d="m12 5 7 7-7 7"/>
+          </svg>
+        </button>
+      </div>
     </div>
   )
 }
@@ -132,11 +145,16 @@ export default function Services() {
   return (
     <section id="services" className={styles.services}>
       <div className={styles.container}>
-        <div className={styles.sectionHeader}>
-          <h2 className={styles.sectionTitle}>Our Services</h2>
-          <p className={styles.sectionSubtitle}>Comprehensive solutions for your digital needs</p>
+        <div className={`${headerStyles.sectionHeader} ${styles.sectionHeader}`}>
+          <span className={headerStyles.sectionBadge}>What We Do</span>
+          <h2 className={`${headerStyles.sectionTitle} ${styles.sectionTitle}`}>Our Services</h2>
+          <div className={headerStyles.sectionDivider}></div>
+          <p className={`${headerStyles.sectionSubtitle} ${styles.sectionSubtitle}`}>
+            Comprehensive solutions for your digital needs. We deliver cutting-edge technology 
+            services that drive innovation and accelerate your business growth.
+          </p>
         </div>
-        <div className={styles.servicesGrid}>
+        <div className={`${cardStyles.cardGrid} ${styles.servicesGrid}`}>
           {services.map((service, index) => (
             <ServiceCard key={service.title} service={service} index={index} />
           ))}

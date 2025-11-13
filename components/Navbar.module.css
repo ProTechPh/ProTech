@@ -3,12 +3,12 @@
   top: 0;
   left: 0;
   right: 0;
-  background: rgba(253, 252, 255, 0.8);
+  background: var(--glass-bg);
   backdrop-filter: blur(20px) saturate(180%);
-  box-shadow: 0 4px 20px rgba(255, 107, 107, 0.08);
+  box-shadow: var(--shadow-sm);
   z-index: 1000;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  border-bottom: 2px solid transparent;
+  transition: all var(--animation-normal) var(--ease-out);
+  border-bottom: 1px solid var(--glass-border);
 }
 
 :root.dark .navbar {
@@ -17,8 +17,9 @@
 }
 
 .navbar.scrolled {
-  box-shadow: 0 8px 32px rgba(255, 107, 107, 0.15);
-  border-bottom: 2px solid rgba(255, 107, 107, 0.2);
+  box-shadow: var(--shadow-lg);
+  border-bottom: 1px solid var(--border-color);
+  background: var(--bg-surface);
 }
 
 :root.dark .navbar.scrolled {
@@ -42,7 +43,32 @@
 .navActions {
   display: flex;
   align-items: center;
-  gap: 1.5rem;
+  gap: 1rem;
+}
+
+.themeToggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all var(--animation-normal) var(--ease-out);
+  box-shadow: var(--shadow-sm);
+  font-family: inherit;
+}
+
+.themeToggle:hover {
+  background: var(--bg-accent);
+  color: var(--primary-color);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--primary-color);
 }
 
 .logo {
