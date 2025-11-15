@@ -1,0 +1,114 @@
+.errorContainer {
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background: var(--bg-secondary);
+}
+
+.errorContent {
+  max-width: 500px;
+  text-align: center;
+  background: var(--bg-surface);
+  padding: 3rem 2rem;
+  border-radius: 1.5rem;
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-lg);
+}
+
+.errorIcon {
+  color: var(--color-error);
+  margin-bottom: 1.5rem;
+}
+
+.errorTitle {
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+}
+
+.errorMessage {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+.errorActions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.retryButton,
+.homeButton {
+  padding: 0.875rem 1.75rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 0.75rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+.retryButton {
+  background: var(--gradient-primary);
+  color: white;
+  box-shadow: 0 4px 14px rgba(91, 79, 255, 0.4);
+}
+
+.retryButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(91, 79, 255, 0.5);
+}
+
+.retryButton:focus-visible {
+  outline: 3px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+.homeButton {
+  background: transparent;
+  color: var(--text-primary);
+  border: 2px solid var(--border-color);
+}
+
+.homeButton:hover {
+  background: var(--bg-accent);
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+}
+
+.homeButton:focus-visible {
+  outline: 3px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 640px) {
+  .errorContent {
+    padding: 2rem 1.5rem;
+  }
+
+  .errorActions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .retryButton,
+  .homeButton {
+    width: 100%;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .retryButton:hover,
+  .homeButton:hover {
+    transform: none;
+  }
+}

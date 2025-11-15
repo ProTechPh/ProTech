@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server'
 
 const GITHUB_USERNAME = process.env.GITHUB_USERNAME || 'ProTechPh'
 const GITHUB_API_URL = `https://api.github.com/users/${GITHUB_USERNAME}/repos`
+const TIMEOUT_MS = 5000 // 5 second timeout
 
 interface GitHubRepo {
   id: number
@@ -39,6 +40,55 @@ const gradients = [
   'linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)',
   'linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%)',
   'linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%)',
+]
+
+// Fallback mock data for when GitHub API is unavailable
+const mockProjects: Project[] = [
+  {
+    title: 'E-Commerce Platform',
+    description: 'A full-stack e-commerce solution with Next.js, TypeScript, and Stripe integration',
+    tags: ['TypeScript', 'React', 'Next.js', 'E-Commerce'],
+    links: {
+      github: `https://github.com/${GITHUB_USERNAME}/ecommerce-platform`,
+    },
+    gradient: gradients[0],
+    updatedAt: new Date().toISOString(),
+    stars: 0,
+  },
+  {
+    title: 'Task Management App',
+    description: 'A collaborative task management application with real-time updates',
+    tags: ['TypeScript', 'React', 'Firebase'],
+    links: {
+      github: `https://github.com/${GITHUB_USERNAME}/task-manager`,
+    },
+    gradient: gradients[1],
+    updatedAt: new Date().toISOString(),
+    stars: 0,
+  },
+  {
+    title: 'Portfolio Website',
+    description: 'Modern portfolio website built with Next.js and TypeScript',
+    tags: ['TypeScript', 'Next.js', 'React'],
+    links: {
+      demo: 'https://protech.ph',
+      github: `https://github.com/${GITHUB_USERNAME}/portfolio`,
+    },
+    gradient: gradients[2],
+    updatedAt: new Date().toISOString(),
+    stars: 0,
+  },
+  {
+    title: 'Weather Dashboard',
+    description: 'Real-time weather dashboard with interactive maps and forecasts',
+    tags: ['JavaScript', 'React', 'API'],
+    links: {
+      github: `https://github.com/${GITHUB_USERNAME}/weather-dashboard`,
+    },
+    gradient: gradients[3],
+    updatedAt: new Date().toISOString(),
+    stars: 0,
+  },
 ]
 
 const languageToTags: Record<string, string[]> = {

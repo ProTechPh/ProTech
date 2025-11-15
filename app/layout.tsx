@@ -2,14 +2,19 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
+import SkipNav from '@/components/SkipNav'
+import NavProgressBar from '@/components/NavProgressBar'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import GoogleAnalytics from '@/components/Analytics'
 
-const inter = Inter({ 
+const inter = Inter({
   subsets: ['latin'],
   weight: ['300', '400', '500', '600', '700', '800'],
   variable: '--font-inter',
+  display: 'swap',
+  preload: true,
+  fallback: ['system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'],
 })
 
 export const metadata: Metadata = {
@@ -91,9 +96,13 @@ export default function RootLayout({
         />
       </head>
       <body className={inter.variable}>
+        <NavProgressBar />
+        <SkipNav />
         <GoogleAnalytics />
         <Navbar />
-        {children}
+        <main id="main-content">
+          {children}
+        </main>
         <Footer />
         <Analytics />
       </body>

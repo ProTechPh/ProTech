@@ -87,84 +87,147 @@ export default function Navbar() {
   }
 
   return (
-    <nav className={`${styles.navbar} ${scrolled ? styles.scrolled : ''}`}>
+    <nav id="navigation" className={`${styles.navbar} ${scrolled ? styles.scrolled : ''}`} aria-label="Main navigation">
       <div className={styles.container}>
         <div className={styles.navWrapper}>
           <Link href="/" className={styles.logo}>
             Pro<span>Tech</span>
           </Link>
-          <ul className={`${styles.navMenu} ${mobileMenuOpen ? styles.active : ''}`}>
-            <li>
+          <ul className={`${styles.navMenu} ${mobileMenuOpen ? styles.active : ''}`} role="menubar">
+            <li role="none">
               {pathname === '/' ? (
-                <a href="#home" className={styles.navLink} onClick={(e) => handleNavClick(e, '#home')}>
+                <a
+                  href="#home"
+                  className={styles.navLink}
+                  onClick={(e) => handleNavClick(e, '#home')}
+                  role="menuitem"
+                  aria-current="page"
+                >
                   Home
                 </a>
               ) : (
-                <Link href="/" className={styles.navLink} onClick={() => setMobileMenuOpen(false)}>
+                <Link
+                  href="/"
+                  className={styles.navLink}
+                  onClick={() => setMobileMenuOpen(false)}
+                  role="menuitem"
+                >
                   Home
                 </Link>
               )}
             </li>
-            <li>
+            <li role="none">
               {pathname === '/' ? (
-                <a href="#about" className={styles.navLink} onClick={(e) => handleNavClick(e, '#about')}>
+                <a
+                  href="#about"
+                  className={styles.navLink}
+                  onClick={(e) => handleNavClick(e, '#about')}
+                  role="menuitem"
+                >
                   About
                 </a>
               ) : (
-                <Link href="/#about" className={styles.navLink} onClick={() => setMobileMenuOpen(false)}>
+                <Link
+                  href="/#about"
+                  className={styles.navLink}
+                  onClick={() => setMobileMenuOpen(false)}
+                  role="menuitem"
+                >
                   About
                 </Link>
               )}
             </li>
-            <li>
+            <li role="none">
               {pathname === '/' ? (
-                <a href="#services" className={styles.navLink} onClick={(e) => handleNavClick(e, '#services')}>
+                <a
+                  href="#services"
+                  className={styles.navLink}
+                  onClick={(e) => handleNavClick(e, '#services')}
+                  role="menuitem"
+                >
                   Services
                 </a>
               ) : (
-                <Link href="/#services" className={styles.navLink} onClick={() => setMobileMenuOpen(false)}>
+                <Link
+                  href="/#services"
+                  className={styles.navLink}
+                  onClick={() => setMobileMenuOpen(false)}
+                  role="menuitem"
+                >
                   Services
                 </Link>
               )}
             </li>
-            <li>
+            <li role="none">
               {pathname === '/' ? (
-                <a href="#skills" className={styles.navLink} onClick={(e) => handleNavClick(e, '#skills')}>
+                <a
+                  href="#skills"
+                  className={styles.navLink}
+                  onClick={(e) => handleNavClick(e, '#skills')}
+                  role="menuitem"
+                >
                   Skills
                 </a>
               ) : (
-                <Link href="/#skills" className={styles.navLink} onClick={() => setMobileMenuOpen(false)}>
+                <Link
+                  href="/#skills"
+                  className={styles.navLink}
+                  onClick={() => setMobileMenuOpen(false)}
+                  role="menuitem"
+                >
                   Skills
                 </Link>
               )}
             </li>
-            <li>
+            <li role="none">
               {pathname === '/' ? (
-                <a href="#projects" className={styles.navLink} onClick={(e) => handleNavClick(e, '#projects')}>
+                <a
+                  href="#projects"
+                  className={styles.navLink}
+                  onClick={(e) => handleNavClick(e, '#projects')}
+                  role="menuitem"
+                >
                   Projects
                 </a>
               ) : (
-                <Link href="/#projects" className={styles.navLink} onClick={() => setMobileMenuOpen(false)}>
+                <Link
+                  href="/#projects"
+                  className={styles.navLink}
+                  onClick={() => setMobileMenuOpen(false)}
+                  role="menuitem"
+                >
                   Projects
                 </Link>
               )}
             </li>
-            <li>
+            <li role="none">
               <Link
                 href="/blog"
                 className={styles.navLink}
                 onClick={() => setMobileMenuOpen(false)}
+                role="menuitem"
+                aria-current={pathname === '/blog' ? 'page' : undefined}
               >
                 Blog
               </Link>
             </li>
-            <li>
+            <li role="none">
               {pathname === '/' ? (
-                <a href="#contact" className={styles.navLink} onClick={(e) => handleNavClick(e, '#contact')}>
+                <a
+                  href="#contact"
+                  className={styles.navLink}
+                  onClick={(e) => handleNavClick(e, '#contact')}
+                  role="menuitem"
+                >
                   Contact
                 </a>
               ) : (
-                <Link href="/#contact" className={styles.navLink} onClick={() => setMobileMenuOpen(false)}>
+                <Link
+                  href="/#contact"
+                  className={styles.navLink}
+                  onClick={() => setMobileMenuOpen(false)}
+                  role="menuitem"
+                >
                   Contact
                 </Link>
               )}
@@ -174,7 +237,9 @@ export default function Navbar() {
             <ThemeToggle />
             <button
               className={`${styles.mobileMenuToggle} ${mobileMenuOpen ? styles.active : ''}`}
-              aria-label="Toggle menu"
+              aria-label="Toggle navigation menu"
+              aria-expanded={mobileMenuOpen}
+              aria-controls="navigation-menu"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             >
               <span></span>
