@@ -20,6 +20,27 @@ interface Project {
 interface ProjectsResponse {
   projects: Project[]
   lastUpdated: string
+  source?: 'github-api' | 'cache' | 'stale-cache' | 'error'
+  message?: string
+  warning?: string
+  error?: {
+    type: 'rate_limit' | 'timeout' | 'network' | 'not_found' | 'server' | 'unknown'
+    message: string
+    canRetry: boolean
+  }
+  rateLimit?: {
+    remaining: number
+    resetTime: string
+  }
+  cacheInfo?: {
+    age: number
+    ttl: number
+  }
+  performance?: {
+    fetchTime: number
+  }
+  totalRepos?: number
+  filteredCount?: number
 }
 
 const fetcher = async (url: string): Promise<ProjectsResponse> => {
@@ -112,14 +133,38 @@ export default function Projects() {
     '/api/github/repos',
     fetcher,
     {
-      refreshInterval: 30000,
-      revalidateOnFocus: true,
+      refreshInterval: 5 * 60 * 1000, // 5 minutes - less frequent since we have caching
+      revalidateOnFocus: false, // Reduce unnecessary requests
       revalidateOnReconnect: true,
-      dedupingInterval: 10000,
+      dedupingInterval: 60 * 1000, // 1 minute deduplication
+      errorRetryCount: 2,
+      errorRetryInterval: 5000,
     }
   )
 
   const projects = data?.projects || []
+
+  // Helper function to get data source display text
+  const getSourceDisplay = () => {
+    return ''
+  }
+
+  // Helper function to get appropriate icon for data source
+  const getSourceIcon = () => {
+    if (!data?.source) return ''
+    
+    switch (data.source) {
+      case 'github-api':
+      case 'cache':
+        return '🔗'
+      case 'stale-cache':
+        return '🔄'
+      case 'error':
+        return '❌'
+      default:
+        return ''
+    }
+  }
 
   return (
     <section id="projects" className={styles.projects}>
@@ -129,16 +174,47 @@ export default function Projects() {
           <p className={styles.sectionSubtitle}>
             {isLoading
               ? 'Loading projects...'
-              : error
+              : error && !data
               ? 'Failed to load projects. Please try again later.'
-              : data?.lastUpdated
-              ? `Our recent work and success stories • Updated ${new Date(data.lastUpdated).toLocaleTimeString()}`
               : 'Our recent work and success stories'}
           </p>
         </div>
-        {error && (
+
+        {/* Status Messages */}
+        {data?.source === 'stale-cache' && (
+          <div className={styles.warningMessage}>
+            <p>🔄 GitHub API temporarily unavailable. Showing recent data.</p>
+          </div>
+        )}
+
+        {data?.error?.type === 'rate_limit' && (
+          <div className={styles.rateLimitMessage}>
+            <p>⏰ GitHub API rate limit reached. {data.rateLimit?.resetTime ? `Resets at ${new Date(data.rateLimit.resetTime).toLocaleTimeString()}` : 'Please try again later.'}</p>
+          </div>
+        )}
+
+        {data?.error?.type === 'not_found' && (
           <div className={styles.errorMessage}>
-            <p>Unable to fetch projects from GitHub. Showing cached data if available.</p>
+            <p>👤 GitHub user not found. Please check the username configuration.</p>
+          </div>
+        )}
+
+
+        {data?.source === 'error' && !isLoading && (
+          <div className={styles.errorMessage}>
+            <p>❌ {data.error?.message || 'Unable to fetch repositories from GitHub. Please try again later.'}</p>
+          </div>
+        )}
+
+        {error && !data && (
+          <div className={styles.errorMessage}>
+            <p>❌ Network error. Please check your connection and try again.</p>
+          </div>
+        )}
+
+        {data?.projects?.length === 0 && data?.source === 'github-api' && data?.message && (
+          <div className={styles.infoMessage}>
+            <p>📁 {data.message}</p>
           </div>
         )}
         {isLoading && projects.length === 0 ? (
