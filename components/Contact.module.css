@@ -182,6 +182,20 @@
 .formGroup {
   display: flex;
   flex-direction: column;
+  position: relative;
+}
+
+.formLabel {
+  position: absolute;
+  left: 1.5rem;
+  top: 1.2rem;
+  font-size: 1rem;
+  color: var(--text-light);
+  pointer-events: none;
+  transition: all 0.2s ease-out;
+  background: var(--bg-secondary);
+  padding: 0 0.5rem;
+  font-weight: 500;
 }
 
 .formInput {
@@ -190,7 +204,7 @@
   border-radius: 16px;
   font-size: 1rem;
   font-family: inherit;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.2s ease-out;
   resize: vertical;
   background: var(--bg-secondary);
   color: var(--text-primary);
@@ -198,15 +212,25 @@
 }
 
 .formInput::placeholder {
-  color: var(--text-light);
+  color: transparent;
 }
 
 .formInput:focus {
   outline: none;
   border-color: var(--primary-color);
   background: var(--bg-primary);
-  box-shadow: 0 0 0 4px rgba(255, 107, 107, 0.1);
+  box-shadow: 0 0 0 4px rgba(255, 107, 107, 0.1), 0 0 20px rgba(255, 107, 107, 0.2);
   transform: translateY(-2px);
+}
+
+.formInput:focus + .formLabel,
+.formInput:not(:placeholder-shown) + .formLabel {
+  top: -0.7rem;
+  left: 1rem;
+  font-size: 0.85rem;
+  color: var(--primary-color);
+  transform: scale(0.85);
+  background: var(--bg-primary);
 }
 
 .inputError {
@@ -223,6 +247,25 @@
   font-size: 0.9rem;
   margin-top: 0.6rem;
   font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  animation: slideDown 0.3s ease-out;
+}
+
+.fieldError svg {
+  flex-shrink: 0;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .errorMessage {

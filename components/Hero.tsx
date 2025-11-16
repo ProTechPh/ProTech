@@ -1,9 +1,39 @@
 'use client'
 
+import { useEffect, useRef } from 'react'
 import Link from 'next/link'
 import styles from './Hero.module.css'
 
 export default function Hero() {
+  const orbsRef = useRef<HTMLDivElement>(null)
+  const shapesRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    let ticking = false
+
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const scrollY = window.scrollY
+          
+          if (orbsRef.current) {
+            orbsRef.current.style.transform = `translateY(${scrollY * 0.5}px)`
+          }
+          
+          if (shapesRef.current) {
+            shapesRef.current.style.transform = `translateY(${scrollY * 0.3}px)`
+          }
+          
+          ticking = false
+        })
+        ticking = true
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault()
     const element = document.querySelector(href)
@@ -19,11 +49,15 @@ export default function Hero() {
   return (
     <section id="home" className={styles.hero}>
       <div className={styles.heroBackground}>
-        <div className={styles.floatingShape1}></div>
-        <div className={styles.floatingShape2}></div>
-        <div className={styles.floatingShape3}></div>
-        <div className={styles.gradientOrb1}></div>
-        <div className={styles.gradientOrb2}></div>
+        <div ref={shapesRef} className={styles.shapesContainer}>
+          <div className={styles.floatingShape1}></div>
+          <div className={styles.floatingShape2}></div>
+          <div className={styles.floatingShape3}></div>
+        </div>
+        <div ref={orbsRef} className={styles.orbsContainer}>
+          <div className={styles.gradientOrb1}></div>
+          <div className={styles.gradientOrb2}></div>
+        </div>
       </div>
       <div className={styles.container}>
         <div className={styles.heroContent}>

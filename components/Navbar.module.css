@@ -20,6 +20,7 @@
   box-shadow: var(--shadow-lg);
   border-bottom: 1px solid var(--border-color);
   background: var(--bg-surface);
+  backdrop-filter: blur(30px) saturate(200%);
 }
 
 :root.dark .navbar.scrolled {
@@ -299,6 +300,29 @@
 
   .navMenu.active {
     left: 0;
+  }
+
+  .navMenu.active li {
+    animation: slideInStagger 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  }
+
+  .navMenu.active li:nth-child(1) { animation-delay: 0.05s; }
+  .navMenu.active li:nth-child(2) { animation-delay: 0.1s; }
+  .navMenu.active li:nth-child(3) { animation-delay: 0.15s; }
+  .navMenu.active li:nth-child(4) { animation-delay: 0.2s; }
+  .navMenu.active li:nth-child(5) { animation-delay: 0.25s; }
+  .navMenu.active li:nth-child(6) { animation-delay: 0.3s; }
+  .navMenu.active li:nth-child(7) { animation-delay: 0.35s; }
+
+  @keyframes slideInStagger {
+    from {
+      opacity: 0;
+      transform: translateX(-30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
   }
 
   .navLink {

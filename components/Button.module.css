@@ -9,7 +9,7 @@
   border-radius: 0.75rem;
   border: 2px solid transparent;
   cursor: pointer;
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
   text-decoration: none;
   white-space: nowrap;
   user-select: none;
@@ -55,30 +55,53 @@
 }
 
 .btn-primary:hover:not(:disabled) {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(91, 79, 255, 0.5);
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 12px 32px rgba(91, 79, 255, 0.6), 0 0 20px rgba(91, 79, 255, 0.3);
 }
 
 .btn-primary:active:not(:disabled) {
-  transform: translateY(0);
+  transform: translateY(0) scale(0.98);
   box-shadow: 0 2px 8px rgba(91, 79, 255, 0.4);
 }
 
 /* Secondary Button */
 .btn-secondary {
-  background: var(--gradient-secondary);
-  color: white;
-  box-shadow: 0 4px 14px rgba(0, 217, 255, 0.4);
-  border-color: transparent;
+  background: var(--bg-primary);
+  color: var(--primary-color);
+  box-shadow: 0 4px 14px rgba(0, 217, 255, 0.2);
+  border: 2px solid var(--primary-color);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-secondary::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: var(--gradient-primary);
+  transform: translate(-50%, -50%);
+  transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1), height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: -1;
+}
+
+.btn-secondary:hover:not(:disabled)::after {
+  width: 300%;
+  height: 300%;
 }
 
 .btn-secondary:hover:not(:disabled) {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(0, 217, 255, 0.5);
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 12px 32px rgba(0, 217, 255, 0.5), 0 0 20px rgba(0, 217, 255, 0.3);
+  color: white;
+  border-color: transparent;
 }
 
 .btn-secondary:active:not(:disabled) {
-  transform: translateY(0);
+  transform: translateY(0) scale(0.98);
   box-shadow: 0 2px 8px rgba(0, 217, 255, 0.4);
 }
 
@@ -93,12 +116,12 @@
 .btn-outline:hover:not(:disabled) {
   background: var(--brand-primary);
   color: white;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 14px rgba(91, 79, 255, 0.3);
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 8px 20px rgba(91, 79, 255, 0.4);
 }
 
 .btn-outline:active:not(:disabled) {
-  transform: translateY(0);
+  transform: translateY(0) scale(0.98);
 }
 
 /* Ghost Button */
@@ -128,12 +151,12 @@
 
 .btn-danger:hover:not(:disabled) {
   background: #DC2626;
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(239, 68, 68, 0.5);
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 12px 32px rgba(239, 68, 68, 0.6), 0 0 20px rgba(239, 68, 68, 0.3);
 }
 
 .btn-danger:active:not(:disabled) {
-  transform: translateY(0);
+  transform: translateY(0) scale(0.98);
   box-shadow: 0 2px 8px rgba(239, 68, 68, 0.4);
 }
 

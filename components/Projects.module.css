@@ -83,11 +83,25 @@
   border-radius: 24px;
   overflow: hidden;
   box-shadow: var(--shadow-md);
-  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
   border: 2px solid var(--border-color);
   position: relative;
   transform-style: preserve-3d;
+  opacity: 0;
+  transform: translateY(30px);
 }
+
+.projectCard.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.projectCard.visible:nth-child(1) { transition-delay: 0s; }
+.projectCard.visible:nth-child(2) { transition-delay: 0.1s; }
+.projectCard.visible:nth-child(3) { transition-delay: 0.2s; }
+.projectCard.visible:nth-child(4) { transition-delay: 0.3s; }
+.projectCard.visible:nth-child(5) { transition-delay: 0.4s; }
+.projectCard.visible:nth-child(6) { transition-delay: 0.5s; }
 
 .projectCard::before {
   content: '';
@@ -97,20 +111,20 @@
   right: 0;
   bottom: 0;
   background: var(--gradient-secondary);
-  opacity: 0;
+  opacity: 0.2;
   transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 0;
   border-radius: 24px;
 }
 
 .projectCard:hover {
-  transform: translateY(-15px) scale(1.02);
-  box-shadow: 0 24px 60px rgba(78, 205, 196, 0.25);
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: var(--shadow-xl);
   border-color: var(--secondary-color);
 }
 
 .projectCard:hover::before {
-  opacity: 0.03;
+  opacity: 0.6;
 }
 
 .projectCard:nth-child(2n) {

@@ -152,41 +152,85 @@ export default function Contact() {
               <input
                 type="text"
                 name="name"
+                id="name"
                 className={`${styles.formInput} ${errors.name ? styles.inputError : ''}`}
-                placeholder="Your Name"
+                placeholder=" "
                 required
               />
-              {errors.name && <span className={styles.fieldError}>{errors.name}</span>}
+              <label htmlFor="name" className={styles.formLabel}>Your Name</label>
+              {errors.name && (
+                <span className={styles.fieldError}>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <circle cx="12" cy="12" r="10"/>
+                    <line x1="12" y1="8" x2="12" y2="12"/>
+                    <line x1="12" y1="16" x2="12.01" y2="16"/>
+                  </svg>
+                  {errors.name}
+                </span>
+              )}
             </div>
             <div className={styles.formGroup}>
               <input
                 type="email"
                 name="email"
+                id="email"
                 className={`${styles.formInput} ${errors.email ? styles.inputError : ''}`}
-                placeholder="Your Email"
+                placeholder=" "
                 required
               />
-              {errors.email && <span className={styles.fieldError}>{errors.email}</span>}
+              <label htmlFor="email" className={styles.formLabel}>Your Email</label>
+              {errors.email && (
+                <span className={styles.fieldError}>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <circle cx="12" cy="12" r="10"/>
+                    <line x1="12" y1="8" x2="12" y2="12"/>
+                    <line x1="12" y1="16" x2="12.01" y2="16"/>
+                  </svg>
+                  {errors.email}
+                </span>
+              )}
             </div>
             <div className={styles.formGroup}>
               <input
                 type="text"
                 name="subject"
+                id="subject"
                 className={`${styles.formInput} ${errors.subject ? styles.inputError : ''}`}
-                placeholder="Subject"
+                placeholder=" "
                 required
               />
-              {errors.subject && <span className={styles.fieldError}>{errors.subject}</span>}
+              <label htmlFor="subject" className={styles.formLabel}>Subject</label>
+              {errors.subject && (
+                <span className={styles.fieldError}>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <circle cx="12" cy="12" r="10"/>
+                    <line x1="12" y1="8" x2="12" y2="12"/>
+                    <line x1="12" y1="16" x2="12.01" y2="16"/>
+                  </svg>
+                  {errors.subject}
+                </span>
+              )}
             </div>
             <div className={styles.formGroup}>
               <textarea
                 name="message"
+                id="message"
                 className={`${styles.formInput} ${errors.message ? styles.inputError : ''}`}
                 rows={5}
-                placeholder="Your Message"
+                placeholder=" "
                 required
               ></textarea>
-              {errors.message && <span className={styles.fieldError}>{errors.message}</span>}
+              <label htmlFor="message" className={styles.formLabel}>Your Message</label>
+              {errors.message && (
+                <span className={styles.fieldError}>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <circle cx="12" cy="12" r="10"/>
+                    <line x1="12" y1="8" x2="12" y2="12"/>
+                    <line x1="12" y1="16" x2="12.01" y2="16"/>
+                  </svg>
+                  {errors.message}
+                </span>
+              )}
             </div>
             <button
               type="submit"
